@@ -1,0 +1,4 @@
+services:
+#    corporate_v_cards.example:
+#        class: AtlanteGroup\Bundle\CorporateVCardsBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

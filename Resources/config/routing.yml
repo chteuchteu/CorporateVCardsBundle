@@ -1,0 +1,3 @@
+corporate_v_cards_homepage:
+    path:     /
+    defaults: { _controller: CorporateVCardsBundle:Default:index }
