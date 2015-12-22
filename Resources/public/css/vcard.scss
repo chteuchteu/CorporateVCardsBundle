@@ -1,0 +1,286 @@
+// Mixins
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+@mixin box-shadow($shadow1, $shadow2:false) {
+	$params: $shadow1;
+	@if $shadow2 { $params: $shadow1, $shadow2; }
+	-webkit-box-shadow: $params;
+	-moz-box-shadow: $params;
+	-o-box-shadow: $params;
+	box-shadow: $params;
+}
+@mixin transition-duration($duration) {
+	-webkit-transition-duration: $duration;
+	-moz-transition-duration: $duration;
+	-o-transition-duration: $duration;
+	transition-duration: $duration;
+}
+@mixin perspective($val) {
+	-webkit-perspective: $val;
+	-moz-perspective: $val;
+	-o-perspective: $val;
+	perspective: $val;
+}
+@mixin transform($val) {
+	-webkit-transform: $val;
+	-moz-transform: $val;
+	-o-transform: $val;
+	transform: $val;
+}
+@mixin transition-transform($val) {
+	-webkit-transition: -webkit-transform $val;
+	-moz-transition: -moz-transform $val;
+	-o-transition: -o-transform $val;
+	transition: transform $val;
+}
+@mixin transform-style($val) {
+	-webkit-transform-style: $val;
+	-moz-transform-style: $val;
+	-o-transform-style: $val;
+	transform-style: $val;
+}
+@mixin backface-visibility($val) {
+	-webkit-backface-visibility: $val;
+	-moz-backface-visibility: $val;
+	-o-backface-visibility: $val;
+	backface-visibility: $val;
+}
+
+// Vars
+$flip-speed: .5s;
+
+// Rules
+body {
+	margin-top: 8px;
+	color: #444444;
+	font-family: "Open Sans", sans-serif;
+	background-color: #E5E9ED;
+}
+
+a {
+	color: #111;
+}
+
+.actions-wrap {
+	margin-bottom: 10px;
+
+	> div {
+		text-align: center;
+	}
+
+	a {
+		font-size: 14px;
+		display: inline-block;
+		text-decoration: none;
+		padding: 9px 13px;
+		@include border-radius(2px);
+		@include transition-duration(200ms);
+
+		i {
+			display: inline-block;
+			margin-right: 5px;
+		}
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.15);
+		}
+	}
+}
+
+.mfp-white {
+	position: relative;
+	background: #FFF;
+	padding: 20px;
+	width: auto;
+	max-width: 500px;
+	margin: 20px auto;
+}
+
+#mail-form {
+	h1 {
+		margin-top: 0;
+	}
+
+	label {
+		display: none;
+	}
+
+	input[type="text"], input[type="email"], textarea {
+		display: inline-block;
+		border: 1px solid #888;
+		color: #555555;
+		padding: 9px 5px 8px 10px;
+		@include border-radius(2px);
+		width: 100%;
+	}
+
+	button[type="submit"] {
+		margin-top: 10px;
+	}
+}
+
+.flash-wrap {
+	text-align: center;
+
+	.success {
+		margin-top: 20px;
+		display: inline-block;
+		padding: 9px 13px;
+		@include border-radius(2px);
+		background-color: #28A528;
+		color: #fff;
+	}
+}
+
+
+// Perspective & animations
+.card-container {
+	@include perspective(800px);
+	margin-bottom: 30px;
+
+	&.hover.manual-flip .card{
+		@include transform(rotateY(180deg));
+	}
+	&.static:hover .card,
+	&.static.hover .card {
+		@include transform(none);
+	}
+
+	.card {
+		@include transition-transform($flip-speed);
+		@include transform-style(preserve-3d);
+		position: relative;
+
+		.front, .back {
+			@include backface-visibility(hidden);
+			position: absolute;
+			top: 0;
+			left: 0;
+			background-color: #FFF;
+			@include box-shadow(0 1px 3px 0 rgba(0, 0, 0, 0.14));
+		}
+
+		.front {
+			z-index: 2;
+		}
+
+		.back {
+			@include transform(rotateY(180deg));
+			z-index: 3;
+		}
+	}
+}
+
+// Styling
+.card-container {
+	font-size: 17px;
+	cursor: default;
+
+	.card {
+		background: none repeat scroll 0 0 #FFFFFF;
+		@include border-radius(2px);
+
+		.front {
+			.cover {
+				height: 105px;
+				overflow: hidden;
+				@include border-radius(2px 2px 0 0);
+
+				img {
+					width: 100%;
+				}
+			}
+
+			.user {
+				@include border-radius(50%);
+				display: block;
+				height: 120px;
+				margin: -55px auto 0;
+				overflow: hidden;
+				width: 120px;
+
+				img {
+					@include border-radius(50%);
+					background: none repeat scroll 0 0 #FFFFFF;
+					border: 4px solid #FFFFFF;
+					width: 100%;
+				}
+			}
+
+			.content {
+				background-color: rgba(0, 0, 0, 0);
+				@include box-shadow(none);
+				padding: 10px 20px 20px;
+
+				.main {
+					min-height: 160px;
+
+					.name {
+						font-size: 22px;
+						line-height: 28px;
+						margin: 10px 0 0;
+						margin-top: 0;
+						text-align: center;
+						text-transform: capitalize;
+					}
+					.profession {
+						color: #999999;
+						text-align: center;
+						margin-top: 0;
+						margin-bottom: 20px;
+					}
+					h5 {
+						margin: 5px 0;
+						font-weight: 400;
+						line-height: 20px;
+					}
+					.address {
+						line-height: 16px;
+						.address_more {
+							display: inline-block;
+							padding-left: 22px;
+						}
+					}
+				}
+			}
+		}
+		.back {
+			img {
+				display: block;
+				margin: 20px auto;
+				max-width: 100%;
+			}
+		}
+	}
+}
+.card-container, .front, .back {
+	width: 100%;
+	height: 420px;
+	@include border-radius(2px);
+}
+
+
+/*       Fix bug for IE      */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.front, .back{
+		-ms-backface-visibility: visible;
+		backface-visibility: visible;
+	}
+
+	.back {
+		visibility: hidden;
+		-ms-transition: all 0.2s cubic-bezier(.92,.01,.83,.67);
+	}
+	.front{
+		z-index: 4;
+	}
+	.card-container:not(.manual-flip):hover .back,
+	.card-container.manual-flip.hover .back{
+		z-index: 5;
+		visibility: visible;
+	}
+}

@@ -1,0 +1,14 @@
+# Single vcard
+vcard:
+    pattern: /{person}
+    defaults: { _controller: CorporateVCardsBundle:VCard:vCard }
+
+# Download .vcf file
+vcard_download:
+    pattern: /{person}/download
+    defaults: { _controller: CorporateVCardsBundle:VCard:downloadVcard }
+
+# Return a QR Code containing person's vcard
+vcard_qrCode:
+    pattern: /{person}/qrCode
+    defaults: { _controller: CorporateVCardsBundle:VCard:qrCode }

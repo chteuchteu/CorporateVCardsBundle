@@ -1,0 +1,7 @@
+services:
+    corporate_v_cards.vcard:
+        class: AtlanteGroup\CorporateVCardsBundle\Service\VCardService
+        arguments:
+            profiles: '%corporate_v_cards.profiles%'
+            defaultProfile: '%corporate_v_cards.default%'
+            assetsHelper: "@templating.helper.assets"
