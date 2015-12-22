@@ -28,7 +28,7 @@ We're now ready to configure each profile:
 
     # app/config/config.yml
     corporate_v_cards:
-        config:
+        config:                                     # BUNDLE CONFIGURATION
             mail_service: @app.mails                # Set to null to disable mails
             favicons:
                 enabled: true
@@ -41,10 +41,10 @@ We're now ready to configure each profile:
                 - bundles/app/img/vcards-backgrounds/4.jpg
                 - bundles/app/img/vcards-backgrounds/5.jpg
             
-        default:
+        default:                                    # DEFAULT PROFILE INFORMATION
             url: http://my_website.com
             
-        profiles:
+        profiles:                                   # PROFILES
             jdoe:
                 firstName: John
                 lastName: Doe
@@ -62,9 +62,9 @@ added to assetic bundles in order to make it generate assets correctly:
 If enabled, you can send a link to the vcard by e-mail by using the included mail form. You must handle sending the mail
 in your own bundle, by implementing the `MailsServiceInterface`'s `sendVcard` function. It received three arguments:
 
- - $toMail: form-submitted e-mail address
- - $profile: person's information: `[ 'firstName' => 'John', 'lastName' => 'Doe', /* ... */ ]`
- - $person: person's name as defined in your config.yml file: `jdoe` 
+ - `$toMail`: form-submitted e-mail address
+ - `$profile`: person's information: `[ 'firstName' => 'John', 'lastName' => 'Doe', /* ... */ ]`
+ - `$person`: person's name as defined in your config.yml file: `jdoe` 
 
 ### Favicons
 Each profile can have custom favicons generated form its profile picture, using [RealFaviconGenerator](https://realfavicongenerator.net/)'s API.
