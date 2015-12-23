@@ -1,5 +1,17 @@
 # CorporateVCardsBundle
-This Bundle allows you to easily create simple & professional looking vcards.
+This Bundle allows you to easily create simple & professional looking vcards:
+
+![CorporateVCardsBundle](screenshot.png)
+
+## Features
+
+ - Produces a set of webpages for each defined profile: (with a customizable prefix)
+    - /vcard/jppernaut
+    - /vcard/cchazal
+    - /vcard/pparvor
+ - On click, shows a QR Code containing all the profile information in the vcard vcf format
+ - Easily download the .vcf file to be opened in any contacts management tool
+ - Easily share the page by sending it as e-mail to a client, friend, relative, ...
 
 ## Let's get started
 To install this bundle inside your existent symfony2 project, follow these instructions:
@@ -82,7 +94,7 @@ All these three nodes produces the following configuration tree view:
             favicons:
                 enabled: true
                 real_favicon_generator_api_key: null
-                dir: bundles/app/img/vcards-favicons/
+                dir: @AppBundle/Resources/public/img/vcards-favicons/
             backgrounds:
                 - bundles/app/img/vcards-backgrounds/1.jpg
                 - bundles/app/img/vcards-backgrounds/2.jpg
@@ -101,6 +113,9 @@ All these three nodes produces the following configuration tree view:
                 firstName: John
                 lastName: Doe
                 photo: bundles/app/img/vcards-people/jdoe.jpg
+
+> Warning: all URIs must be formatted as above (`@AppBundle/Resources/public/file.ext` vs `bundles/app/file.ext` format,
+trailing and leading slashes)
 
 ### Mails
 If enabled, a form will be shown on each vcard's page, allowing one to send the current vcard to an e-mail address.
