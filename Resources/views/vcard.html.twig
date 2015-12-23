@@ -66,15 +66,19 @@
                             {% endif %}
                             <div class="content">
                                 <div class="main">
-                                    <h5>
-                                        <i class="fa fa-envelope-o fa-fw text-muted"></i>
-                                        <a href="mailto:{{ profile.email|rot13 }}" data-obfuscated="true" target="_blank">{{ profile.email|rot13 }}</a>
-                                    </h5>
+                                    {% if profile.email is not empty %}
+                                        <h5>
+                                            <i class="fa fa-envelope-o fa-fw text-muted"></i>
+                                            <a href="mailto:{{ profile.email|rot13 }}" data-obfuscated="true" target="_blank">{{ profile.email|rot13 }}</a>
+                                        </h5>
+                                    {% endif %}
 
-                                    <h5>
-                                        <i class="fa fa-phone fa-fw text-muted"></i>
-                                        <a href="tel:{{ profile.phone.work|replace({' ': ''}) }}">{{ profile.phone.work }}</a>
-                                    </h5>
+                                    {% if profile.phone.work is not empty %}
+                                        <h5>
+                                            <i class="fa fa-phone fa-fw text-muted"></i>
+                                            <a href="tel:{{ profile.phone.work|replace({' ': ''}) }}">{{ profile.phone.work }}</a>
+                                        </h5>
+                                    {% endif %}
 
                                     {% if profile.phone.mobile is not empty %}
                                         <h5>
@@ -83,7 +87,9 @@
                                         </h5>
                                     {% endif %}
 
-                                    <h5><i class="fa fa-building-o fa-fw text-muted"></i> {{ profile.company }}</h5>
+                                    {% if profile.company is not empty %}
+                                        <h5><i class="fa fa-building-o fa-fw text-muted"></i> {{ profile.company }}</h5>
+                                    {% endif %}
 
                                     <h5 class="address">
                                         <i class="fa fa-map-marker fa-fw text-muted"></i>
