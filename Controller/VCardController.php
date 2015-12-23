@@ -3,6 +3,7 @@
 namespace AtlanteGroup\CorporateVCardsBundle\Controller;
 
 use AtlanteGroup\CorporateVCardsBundle\CorporateVCardsBundle;
+use AtlanteGroup\CorporateVCardsBundle\Helper\Util;
 use AtlanteGroup\CorporateVCardsBundle\Service\MailsServiceInterface;
 use AtlanteGroup\CorporateVCardsBundle\Service\VCardService;
 use Endroid\QrCode\QrCode;
@@ -61,13 +62,19 @@ class VCardController extends Controller
             }
         }
 
+        // Generate favicons public path base
+        $faviconsPath = $config['favicons']['enabled']
+            ? Util::getPublicDir($config['favicons']['dir'])
+            : null;
+
         return $this->render('@CorporateVCards/vcard.html.twig', [
             'person' => $person,
             'profile' => $profile,
             'background' => $background,
             'mailsEnabled' => $mailsServiceName != null,
             'form' => $formView,
-            'config' => $config
+            'config' => $config,
+            'favicons_path_base' => $faviconsPath
         ]);
     }
 

@@ -14,7 +14,7 @@ To install this bundle inside your existent symfony2 project, follow these instr
     ],
     "require": {
         # ...
-        "atlante-group/corporate-vcards-bundle": "master"
+        "atlante-group/corporate-vcards-bundle": "dev-master"
     }
 
 2. Register this bundle:
@@ -33,7 +33,12 @@ To install this bundle inside your existent symfony2 project, follow these instr
         # app/config/routing.yml
         CorporateVCardsBundle:
             resource: "@CorporateVCardsBundle/Resources/config/routing.yml"
-            prefix:   /vcards/
+            prefix:   /vcard/
+
+4. Install assets:
+
+        $ php app/console asset:install
+        $ php app/console assetic:dump
 
 ### Defining profiles
 We're now ready to configure each profile:
