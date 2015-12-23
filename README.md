@@ -4,7 +4,19 @@ This Bundle allows you to easily create simple & professional looking vcards.
 ## Let's get started
 To install this bundle inside your existent symfony2 project, follow these instructions:
 
-1. `composer require`
+1. Add this project to composer
+
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/AtlanteGroup/CorporateVCardsBundle"
+        }
+    ],
+    "require": {
+        # ...
+        "atlantegroup/corporate-vcards-bundle": "master"
+    }
+
 2. Register this bundle:
 
         // app/AppKernel.php
