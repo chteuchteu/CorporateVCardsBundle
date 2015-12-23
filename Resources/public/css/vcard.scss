@@ -196,18 +196,33 @@ a {
 			}
 
 			.user {
-				@include border-radius(50%);
+				@include border-radius(3px);
 				display: block;
 				height: 120px;
-				margin: -55px auto 0;
+				margin: -55px auto 0 20px;
 				overflow: hidden;
-				width: 120px;
+				position: relative;
 
 				img {
-					@include border-radius(50%);
+					@include border-radius(3px);
 					background: none repeat scroll 0 0 #FFFFFF;
-					border: 4px solid #FFFFFF;
-					width: 100%;
+					border: 2px solid #FFFFFF;
+					width: 120px;
+					float: left;
+					margin-right: 13px;
+				}
+
+				.name {
+					font-size: 22px;
+					margin-top: 20px;
+					margin-bottom: 0;
+					padding: 3px 0;
+					background-color: rgba(0, 0, 0, 0.4);
+					color: #fff;
+					text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+				}
+				.profession {
+					margin-top: 5px;
 				}
 			}
 
@@ -219,20 +234,6 @@ a {
 				.main {
 					min-height: 160px;
 
-					.name {
-						font-size: 22px;
-						line-height: 28px;
-						margin: 10px 0 0;
-						margin-top: 0;
-						text-align: center;
-						text-transform: capitalize;
-					}
-					.profession {
-						color: #999999;
-						text-align: center;
-						margin-top: 0;
-						margin-bottom: 20px;
-					}
 					h5 {
 						margin: 5px 0;
 						font-weight: 400;

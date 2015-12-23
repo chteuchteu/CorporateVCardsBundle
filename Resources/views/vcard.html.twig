@@ -56,16 +56,16 @@
                             {% if profile.photo is not null %}
                                 <div class="user">
                                     <img class="img-circle" src="{{ asset(profile.photo) }}" alt="{{ profile.firstName ~ ' ' ~ profile.lastName }}" />
+
+                                    <h3 class="name">{{ profile.firstName ~ ' ' ~ profile.lastName }}</h3>
+
+                                    {% if profile.jobTitle is not empty %}
+                                        <p class="profession">{{ profile.jobTitle }}</p>
+                                    {% endif %}
                                 </div>
                             {% endif %}
                             <div class="content">
                                 <div class="main">
-                                    <h3 class="name">{{ profile.firstName ~ ' ' ~ profile.lastName }}</h3>
-
-                                    {% if profile.jobTitle is not null %}
-                                        <p class="profession">{{ profile.jobTitle }}</p>
-                                    {% endif %}
-
                                     <h5>
                                         <i class="fa fa-envelope-o fa-fw text-muted"></i>
                                         <a href="mailto:{{ profile.email|rot13 }}" data-obfuscated="true" target="_blank">{{ profile.email|rot13 }}</a>
@@ -76,7 +76,7 @@
                                         <a href="tel:{{ profile.phone.work|replace({' ': ''}) }}">{{ profile.phone.work }}</a>
                                     </h5>
 
-                                    {% if profile.phone.mobile is not null %}
+                                    {% if profile.phone.mobile is not empty %}
                                         <h5>
                                             <i class="fa fa-mobile-phone fa-fw text-muted"></i>
                                             <a href="tel:{{ profile.phone.mobile|replace({' ': ''}) }}">{{ profile.phone.mobile }}</a>
