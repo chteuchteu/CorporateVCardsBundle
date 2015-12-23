@@ -14,7 +14,7 @@ To install this bundle inside your existent symfony2 project, follow these instr
     ],
     "require": {
         # ...
-        "atlantegroup/corporate-vcards-bundle": "master"
+        "atlante-group/corporate-vcards-bundle": "master"
     }
 
 2. Register this bundle:
