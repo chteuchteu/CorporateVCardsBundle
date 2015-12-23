@@ -71,7 +71,7 @@ class GenerateVCardsFaviconsCommand extends ContainerAwareCommand
 
             // Call API to generate favicons
             $output->writeln(' -> Calling API for ' . $person);
-            $publicPath = Util::getPublicDir($destination_logicalPath . $person);
+            $publicPath = '/' . Util::getPublicDir($destination_logicalPath . $person);
             $res = $this->getFavicons($profile, $dir, $publicPath);
 
             if (!$res)
