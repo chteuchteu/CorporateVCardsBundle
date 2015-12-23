@@ -4,24 +4,26 @@ namespace AtlanteGroup\CorporateVCardsBundle\Service;
 
 use AtlanteGroup\CorporateVCardsBundle\Helper\Util;
 use JeroenDesloovere\VCard\VCard;
-use Symfony\Bundle\FrameworkBundle\Templating\Helper\AssetsHelper;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class VCardService
 {
     /** @var array */
     private $profiles;
-
     /** @var array */
     private $defaultProfile;
+    /** @var string */
+    private $kernelRootDir;
+    /** @var Request */
+    private $request;
 
-    /** @var AssetsHelper */
-    private $assets;
-
-    public function __construct($profiles, $defaultProfile, $assets)
+    public function __construct($profiles, $defaultProfile, $kernelRootDir, RequestStack $requestStack)
     {
         $this->profiles = $profiles;
         $this->defaultProfile = $defaultProfile;
-        $this->assets = $assets;
+        $this->kernelRootDir = $kernelRootDir;
+        $this->request = $requestStack->getCurrentRequest();
     }
 
     /**
@@ -80,7 +82,17 @@ class VCardService
             ->addJobtitle($profile['jobTitle']);
 
         // Add photo
-        $vcard->addPhoto($this->assets->getUrl($profile['photo']), $includePhoto);
+        $photoUri = null;
+        if ($includePhoto) {
+            // Generate filesystem URI
+            $webDir = $this->kernelRootDir . '/../web/';
+            $photoUri = $webDir . $profile['photo'];
+        } else {
+            // Generate absolute public URI
+            $photoUri = $this->request->getUriForPath('/' . $profile['photo']);
+        }
+
+        $vcard->addPhoto($photoUri, $includePhoto);
 
         return $vcard;
     }

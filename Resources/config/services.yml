@@ -4,4 +4,5 @@ services:
         arguments:
             profiles: '%corporate_v_cards.profiles%'
             defaultProfile: '%corporate_v_cards.default%'
-            assetsHelper: "@templating.helper.assets"
+            kernelRootDir: "%kernel.root_dir%"
+            requestStack: "@request_stack"
