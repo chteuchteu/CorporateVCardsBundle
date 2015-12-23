@@ -155,15 +155,17 @@ a {
         float: left;
         margin-right: 13px; }
       .card-container .card .front .user .name {
-        font-size: 22px;
-        margin-top: 20px;
+        font-size: 18px;
+        font-weight: normal;
+        margin-top: 22px;
         margin-bottom: 0;
-        padding: 3px 0;
+        padding: 4px 0;
         background-color: rgba(0, 0, 0, 0.4);
         color: #fff;
         text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5); }
       .card-container .card .front .user .profession {
-        margin-top: 5px; }
+        margin-top: 5px;
+        font-size: 16px; }
     .card-container .card .front .content {
       background-color: transparent;
       -webkit-box-shadow: none;
