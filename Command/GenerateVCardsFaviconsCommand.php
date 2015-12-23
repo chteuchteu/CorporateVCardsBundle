@@ -3,6 +3,7 @@
 namespace AtlanteGroup\CorporateVCardsBundle\Command;
 
 use AtlanteGroup\CorporateVCardsBundle\CorporateVCardsBundle;
+use AtlanteGroup\CorporateVCardsBundle\Helper\Util;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -37,7 +38,8 @@ class GenerateVCardsFaviconsCommand extends ContainerAwareCommand
         }
 
         // Generate destination path
-        $destination = $container->get('file_locator')->locate($config['favicons']['dir']);
+        $destination_logicalPath = $config['favicons']['dir'];
+        $destination = $container->get('file_locator')->locate($destination_logicalPath);
 
         // Get profiles
         $vCardService = $this->getContainer()->get('corporate_v_cards.vcard');
@@ -69,7 +71,8 @@ class GenerateVCardsFaviconsCommand extends ContainerAwareCommand
 
             // Call API to generate favicons
             $output->writeln(' -> Calling API for ' . $person);
-            $res = $this->getFavicons($profile, $dir);
+            $publicPath = Util::getPublicDir($destination_logicalPath . $person);
+            $res = $this->getFavicons($profile, $dir, $publicPath);
 
             if (!$res)
                 $output->writeln(' -> Failed while generating favicons for ' . $person);
@@ -78,7 +81,7 @@ class GenerateVCardsFaviconsCommand extends ContainerAwareCommand
         }
     }
 
-    private function getFavicons($profile, $destination)
+    private function getFavicons($profile, $destination, $publicPath)
     {
         // Build JSON structure for API call
         $struct = [
@@ -90,7 +93,7 @@ class GenerateVCardsFaviconsCommand extends ContainerAwareCommand
                 ],
                 'files_location' => [
                     'type' => 'path',
-                    'path' => '/'
+                    'path' => $publicPath
                 ],
                 'favicon_design' => [
                     'desktop_browser' => [],
