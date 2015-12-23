@@ -123,6 +123,10 @@ if the current profile **has a photo and hasn't any generated favicons yet**.
 
 > Note 2: you must execute this command if you add new profiles, change a photo, or rename a profile key.
 
+### Email protection
+In order to protect profiles e-mail addresses against spammer robots, we "encrypt" them using [ROT13](https://en.wikipedia.org/wiki/ROT13) 
+substitution cipher. Those are then decoded client-side using a simple javascript script. This technique is not meant to be perfect
+nor secure, but to avoid displaying clear e-mail addresses in the vcards HTML source.
 
 ## Contribute
 All contributions are welcomed! Please create your pull-requests against the `devel` branch.
