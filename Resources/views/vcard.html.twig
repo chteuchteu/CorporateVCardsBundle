@@ -66,6 +66,8 @@
                             {% endif %}
                             <div class="content">
                                 <div class="main">
+                                    <i id="rotate-handle" class="fa fa-qrcode hoverable"></i>
+
                                     {% if profile.email is not empty %}
                                         <h5>
                                             <i class="fa fa-envelope-o fa-fw text-muted"></i>
@@ -111,11 +113,17 @@
         </div>
         <div class="row actions-wrap">
             <div class="col-md-2 col-md-offset-4 col-xs-6">
-                <a href="{{ path('vcard_download', {person: person}) }}"><i class="fa fa-download"></i>Télécharger</a>
+                <a href="{{ path('vcard_download', {person: person}) }}" class="hoverable">
+                    <i class="fa fa-download"></i>
+                    Télécharger
+                </a>
             </div>
             {% if mailsEnabled %}
                 <div class="col-md-2 col-xs-6">
-                    <a href="#mail-form"><i class="fa fa-envelope"></i>Envoyer</a>
+                    <a href="#mail-form" class="hoverable">
+                        <i class="fa fa-envelope"></i>
+                        Envoyer
+                    </a>
                 </div>
             {% endif %}
         </div>

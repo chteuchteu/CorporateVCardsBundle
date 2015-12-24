@@ -1,12 +1,8 @@
 $(document).ready(function() {
 	var card = $('.card');
 
-	// Rotate card
-	card.click(function(e) {
-		// Don't rotate card on link click
-		if ($(e.target).is('a'))
-			return;
-
+	// Rotate card on qr-code icon click, or whole back surface click
+	card.find('#rotate-handle, .back').click(function(e) {
 		rotateCard(this);
 	});
 
