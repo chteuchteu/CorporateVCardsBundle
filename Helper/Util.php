@@ -66,7 +66,12 @@ abstract class Util
         }
 
         // Prettify business name
-        $business = ucwords(preg_replace("/(\.|-|_)/", " ", $domainPart));
+        // Exclude common mail providers
+        $excludedProviders = [
+            "gmail", "google-mail", "live", "outlook", "wanadoo",
+            "yahoo", "orange", "aol", "laposte", "sfr", "free"
+        ];
+        $business = in_array($domainPart, $excludedProviders) ? null : ucwords(preg_replace("/(\.|-|_)/", " ", $domainPart));
 
         return [
             'email' => $email,
