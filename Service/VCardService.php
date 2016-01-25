@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 class VCardService
 {
     /** @var array */
+    private $profileSkeleton;
+    /** @var array */
     private $profiles;
     /** @var array */
     private $defaultProfile;
@@ -24,6 +26,18 @@ class VCardService
         $this->defaultProfile = $defaultProfile;
         $this->kernelRootDir = $kernelRootDir;
         $this->request = $requestStack->getCurrentRequest();
+        $this->profileSkeleton = [
+            'firstName' => null, 'lastName' => null,
+            'email' => null, 'jobTitle' => null,
+            'company' => null, 'photo' => null,
+            'phone' => [
+                'work' => null, 'mobile' => null
+            ],
+            'address' => [
+                'street' => null, 'city' => null, 'region' => null, 'zip' => null, 'country' => null
+            ],
+            'url' => null
+        ];
     }
 
     /**
@@ -36,8 +50,22 @@ class VCardService
         if (!array_key_exists($person, $this->profiles))
             return null;
 
-        // Merge profile with default values
-        return Util::array_merge_recursive_distinct($this->defaultProfile, $this->profiles[$person]);
+        return $this->buildProfile($this->profiles[$person]);
+    }
+
+    /**
+     * Builds a profile array from person information
+     * @param $infos
+     * @return array
+     */
+    public function buildProfile($infos, $mergeWithDefaults=true)
+    {
+        $struct = $this->profileSkeleton;
+
+        if ($mergeWithDefaults)
+            $struct = Util::array_merge_recursive_distinct($struct, $this->defaultProfile);
+
+        return Util::array_merge_recursive_distinct($struct, $infos);
     }
 
     /**
@@ -82,17 +110,20 @@ class VCardService
             ->addJobtitle($profile['jobTitle']);
 
         // Add photo
-        $photoUri = null;
-        if ($includePhoto) {
-            // Generate filesystem URI
-            $webDir = $this->kernelRootDir . '/../web/';
-            $photoUri = $webDir . $profile['photo'];
-        } else {
-            // Generate absolute public URI
-            $photoUri = $this->request->getUriForPath('/' . $profile['photo']);
-        }
+        if ($profile['photo'] != null)
+        {
+            $photoUri = null;
+            if ($includePhoto) {
+                // Generate filesystem URI
+                $webDir = $this->kernelRootDir . '/../web/';
+                $photoUri = $webDir . $profile['photo'];
+            } else {
+                // Generate absolute public URI
+                $photoUri = $this->request->getUriForPath('/' . $profile['photo']);
+            }
 
-        $vcard->addPhoto($photoUri, $includePhoto);
+            $vcard->addPhoto($photoUri, $includePhoto);
+        }
 
         return $vcard;
     }

@@ -39,4 +39,40 @@ abstract class Util
 
         return 'bundles/' . $bundleName . '/' . $publicPath;
     }
+
+    /**
+     * Tries to guess contact information from his email address
+     * @param $email
+     * @return array (email, firstName, lastName, business)
+     */
+    public static function getContactInformationFromEmailAddress($email)
+    {
+        // Get "jdoe" & "evil-corp" from jdoe@evil-corp.com
+        preg_match("/(.*)@(.*)\.(?:.*)/", $email, $matches);
+
+        $namePart = $matches[1];
+        $domainPart = $matches[2];
+
+        $firstName = $lastName = $business = null;
+
+        // Try to get first name & last name from $namePart
+        if (preg_match("/(\.|-|_)/", $namePart)) {
+            preg_match("/(.*)(?:\.|-|_)(.*)/", $namePart, $nameMatches);
+
+            $firstName = ucwords($nameMatches[1]);
+            $lastName = ucwords($nameMatches[2]);
+        } else {
+            $firstName = ucwords($namePart);
+        }
+
+        // Prettify business name
+        $business = ucwords(preg_replace("/(\.|-|_)/", " ", $domainPart));
+
+        return [
+            'email' => $email,
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'business' => $business
+        ];
+    }
 }

@@ -7,6 +7,7 @@ use AtlanteGroup\CorporateVCardsBundle\Helper\Util;
 use AtlanteGroup\CorporateVCardsBundle\Service\MailsServiceInterface;
 use AtlanteGroup\CorporateVCardsBundle\Service\VCardService;
 use Endroid\QrCode\QrCode;
+use JeroenDesloovere\VCard\VCard;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -37,6 +38,8 @@ class VCardController extends Controller
 
         // Check if mails are enabled
         $formView = null;
+        $mailSent = false;
+        $recipientVcardLink = null;
         $mailsServiceName = $config['mails_service'];
         if (!!$mailsServiceName) {
             // Send by mail form
@@ -54,11 +57,17 @@ class VCardController extends Controller
             $formView = $form->createView();
 
             if ($form->isSubmitted() && $form->isValid()) {
+                // Send e-mail
                 /** @var MailsServiceInterface $mailsService */
                 $mailsService = $this->get(substr($mailsServiceName, 1));
-                $mailsService->sendVcard($form->get('email')->getData(), $profile, $person);
+                $email = $form->get('email')->getData();
+                $mailsService->sendVcard($email, $profile, $person);
 
-                $this->addFlash('success', 'Mail envoyé !');
+                // Generate vcard download link from user e-mail address
+                $infos = Util::getContactInformationFromEmailAddress($email);
+                $recipientVcardLink = $this->get('router')->generate('vcard_download_frominfos', array_merge(['person' => $person], $infos));
+
+                $mailSent = true;
             }
         }
 
@@ -72,6 +81,8 @@ class VCardController extends Controller
             'profile' => $profile,
             'background' => $background,
             'mailsEnabled' => $mailsServiceName != null,
+            'mailSent' => $mailSent,
+            'recipientVcardLink' => $recipientVcardLink,
             'form' => $formView,
             'config' => $config,
             'favicons_path_base' => $faviconsPath
@@ -92,6 +103,31 @@ class VCardController extends Controller
         // Get vCard
         $vcard = $vCardService->getVcard($profile, true);
 
+        return $this->buildVcardResponse($vcard);
+    }
+
+    public function downloadVcardFromInfosAction(Request $request)
+    {
+        $params = $request->query;
+
+        /** @var VCardService $vCardService */
+        $vCardService = $this->get('corporate_v_cards.vcard');
+
+        $infos = $vCardService->buildProfile([
+            'firstName' => $params->get('firstName'),
+            'lastName' => $params->get('lastName'),
+            'email' => $params->get('email'),
+            'company' => $params->get('company')
+        ], false);
+
+        // Get vCard
+        $vcard = $vCardService->getVcard($infos, true);
+
+        return $this->buildVcardResponse($vcard);
+    }
+
+    private function buildVcardResponse(VCard $vcard)
+    {
         // Build response
         $response = new Response($vcard->getOutput());
         foreach ($vcard->getHeaders(true) as $key => $val)

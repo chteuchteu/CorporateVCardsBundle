@@ -137,6 +137,14 @@ a {
 		@include border-radius(2px);
 		background-color: #28A528;
 		color: #fff;
+
+		a {
+			color: #154615;
+			text-decoration: none;
+			font-weight: 600;
+			display: inline-block;
+			margin: 0 5px;
+		}
 	}
 }
 

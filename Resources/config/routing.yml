@@ -8,6 +8,11 @@ vcard_download:
     pattern: /{person}/download
     defaults: { _controller: CorporateVCardsBundle:VCard:downloadVcard }
 
+# Download .vcf file from its information
+vcard_download_frominfos:
+    pattern: /{person}/download_vcard
+    defaults: { _controller: CorporateVCardsBundle:VCard:downloadVcardFromInfos }
+
 # Return a QR Code containing person's vcard
 vcard_qrCode:
     pattern: /{person}/qrCode

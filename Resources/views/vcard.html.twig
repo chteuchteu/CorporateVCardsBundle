@@ -44,6 +44,10 @@
             {% for flashMessage in app.session.flashbag.get('success') %}
                 <p class="success">{{ flashMessage }}</p>
             {% endfor %}
+
+            {% if mailSent %}
+                <p class="success">Mail envoyé ! <a href="{{ recipientVcardLink }}">Ajouter le destinataire aux contacts</a></p>
+            {% endif %}
         </div>
         <div class="row">
             <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
