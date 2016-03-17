@@ -90,7 +90,7 @@ All these three nodes produces the following configuration tree view:
     # app/config/config.yml
     corporate_v_cards:
         config:                                     # BUNDLE CONFIGURATION
-            mail_service: @app.mails                # Set to null to disable mails
+            mails_service: @app.mails                # Set to null to disable mails
             favicons:
                 enabled: true
                 real_favicon_generator_api_key: null
