@@ -48,16 +48,9 @@ To install this bundle inside your existent symfony2 project, follow these instr
             resource: "@CorporateVCardsBundle/Resources/config/routing.yml"
             prefix:   /vcard/
 
-4. Register this bundle in assetic's configuration
-
-        # app/config/config.yml
-        assetic:
-            bundles: [ AppBundle, CorporateVCardsBundle ]
-
-5. Install assets:
+4. Install assets:
 
         $ php app/console asset:install
-        $ php app/console assetic:dump
 
 
 ### Defining profiles

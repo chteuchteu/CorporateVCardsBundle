@@ -29,14 +29,10 @@
     <title>{{ profile.firstName ~ ' ' ~ profile.lastName }} - {{ profile.company }}</title>
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open%20Sans" type="text/css" media="all" />
-
-    {% stylesheets 'bundles/corporatevcards/css/*' filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
-    {% endstylesheets %}
-
-    {% javascripts '@CorporateVCardsBundle/Resources/public/js/*' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    <link rel="stylesheet" href="{{ asset('bundles/corporatevcards/css/bootstrap.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/corporatevcards/css/font-awesome.min.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/corporatevcards/css/magnific-popup.css') }}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('bundles/corporatevcards/css/vcards.css') }}" type="text/css" media="all" />
 </head>
 <body>
     <div class="container">
@@ -143,5 +139,10 @@
             <div class="clearfix"></div>
         </div>
     {% endif %}
+
+    <script type="text/javascript" src="{{ asset('bundles/corporatevcards/jquery-1.11.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/corporatevcards/rot13.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/corporatevcards/jquery.magnific-popup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/corporatevcards/script.js') }}"></script>
 </body>
 </html>
