@@ -6,3 +6,9 @@ services:
             defaultProfile: '%corporate_v_cards.default%'
             kernelRootDir: "%kernel.root_dir%"
             requestStack: "@request_stack"
+
+    app.twig_extension:
+        class: AtlanteGroup\CorporateVCardsBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }
