@@ -50,9 +50,7 @@
                 <div class="card-container manual-flip">
                     <div class="card">
                         <div class="front">
-                            <div class="cover">
-                                <img src="{{ asset(background) }}" />
-                            </div>
+                            <div class="cover" style="background-image: url('{{ asset(background) }}');"></div>
                             {% if profile.photo is not null %}
                                 <div class="user">
                                     <img class="img-circle" src="{{ asset(profile.photo) }}" alt="{{ profile.firstName ~ ' ' ~ profile.lastName }}" />

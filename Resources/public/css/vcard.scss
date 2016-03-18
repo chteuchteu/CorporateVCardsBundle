@@ -49,6 +49,12 @@
 	-o-backface-visibility: $val;
 	backface-visibility: $val;
 }
+@mixin background-size($param) {
+	-webkit-background-size: $param;
+	-moz-background-size: $param;
+	-o-background-size: $param;
+	background-size: $param;
+}
 
 // Vars
 $flip-speed: .5s;
@@ -201,10 +207,9 @@ a {
 				height: 105px;
 				overflow: hidden;
 				@include border-radius(2px 2px 0 0);
-
-				img {
-					width: 100%;
-				}
+				background-position: center;
+				background-repeat: no-repeat;
+				@include background-size(cover);
 			}
 
 			.user {
