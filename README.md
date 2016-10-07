@@ -16,41 +16,39 @@ This Bundle allows you to easily create simple & professional looking vcards:
 ## Let's get started
 To install this bundle inside your existent symfony2 project, follow these instructions:
 
-1. Require project in your `composer.json` file
+1. Require this project
 
-        # composer.json
-        "repositories": [
-            {
-                "type": "vcs",
-                "url": "https://github.com/chteuchteu/CorporateVCardsBundle"
-            }
-        ],
-        "require": {
-            # ...
-            "chteuchteu/corporate-vcards-bundle": "dev-master"
-        }
+    ```bash
+    composer require chteuchteu/corporate-vcards-bundle
+    ```
 
 2. Register this bundle in symfony's kernel:
 
-        // app/AppKernel.php
-        public function registerBundles()
-        {
-            $bundles = array(
-                // ...
-                new Chteuchteu\CorporateVCardsBundle\CorporateVCardsBundle(),
-            );
-        }
+    ```php
+    // app/AppKernel.php
+    public function registerBundles()
+    {
+        $bundles = array(
+            // ...
+            new Chteuchteu\CorporateVCardsBundle\CorporateVCardsBundle(),
+        );
+    }
+    ```
 
 3. Configure routing:
 
-        # app/config/routing.yml
-        CorporateVCardsBundle:
-            resource: "@CorporateVCardsBundle/Resources/config/routing.yml"
-            prefix:   /vcard/
+    ```yml
+    # app/config/routing.yml
+    CorporateVCardsBundle:
+        resource: "@CorporateVCardsBundle/Resources/config/routing.yml"
+        prefix:   /vcard/
+    ```
 
 4. Install assets:
 
-        $ php app/console asset:install
+    ```bash
+    php bin/console asset:install
+    ```
 
 
 ### Defining profiles
@@ -60,52 +58,56 @@ defines profiles-related information.
 First, define define some - or none - default values using the `default` node. Then, create one or several profiles inside
 the `profiles` node. A valid profile tree would look like this:
 
-    bdumaurier:
-        firstName: Bedelia
-        lastName: Du Maurier
-        company: Hannibal & Associates
-        jobTitle: CEO
-        email: bdumaurier@hannibal.com
-        phone:
-            mobile: +33 6 12 34 56 78
-            work: +33 3 12 34 56 78
-        address:
-            street: 3706 Merry Cider Round
-            city: Silverado
-            region: California
-            zip: 92676
-            country: US
-        photo: bundles/app/img/vcards-people/bdumaurier.jpg
-        url: http://www.my-website.com
+```yml
+bdumaurier:
+    firstName: Bedelia
+    lastName: Du Maurier
+    company: Hannibal & Associates
+    jobTitle: CEO
+    email: bdumaurier@hannibal.com
+    phone:
+        mobile: +33 6 12 34 56 78
+        work: +33 3 12 34 56 78
+    address:
+        street: 3706 Merry Cider Round
+        city: Silverado
+        region: California
+        zip: 92676
+        country: US
+    photo: bundles/app/img/vcards-people/bdumaurier.jpg
+    url: http://www.my-website.com
+```
 
 All these three nodes produces the following configuration tree view:
 
-    # app/config/config.yml
-    corporate_v_cards:
-        config:                                     # BUNDLE CONFIGURATION
-            mails_service: @app.mails                # Set to null to disable mails
-            favicons:
-                enabled: true
-                real_favicon_generator_api_key: null
-                dir: @AppBundle/Resources/public/img/vcards-favicons/
-            backgrounds:
-                - bundles/app/img/vcards-backgrounds/1.jpg
-                - bundles/app/img/vcards-backgrounds/2.jpg
-                - bundles/app/img/vcards-backgrounds/3.jpg
-                - bundles/app/img/vcards-backgrounds/4.jpg
-                - bundles/app/img/vcards-backgrounds/5.jpg
-            
-        default:                                    # DEFAULT PROFILE INFORMATION
-            company: My Company
-            phone:
-                work: +33 3 45 67 89 10
-            url: http://my_website.com
-            
-        profiles:                                   # PROFILES
-            jdoe:
-                firstName: John
-                lastName: Doe
-                photo: bundles/app/img/vcards-people/jdoe.jpg
+```yml
+# app/config/config.yml
+corporate_v_cards:
+    config:                                     # BUNDLE CONFIGURATION
+        mails_service: @app.mails                # Set to null to disable mails
+        favicons:
+            enabled: true
+            real_favicon_generator_api_key: null
+            dir: @AppBundle/Resources/public/img/vcards-favicons/
+        backgrounds:
+            - bundles/app/img/vcards-backgrounds/1.jpg
+            - bundles/app/img/vcards-backgrounds/2.jpg
+            - bundles/app/img/vcards-backgrounds/3.jpg
+            - bundles/app/img/vcards-backgrounds/4.jpg
+            - bundles/app/img/vcards-backgrounds/5.jpg
+        
+    default:                                    # DEFAULT PROFILE INFORMATION
+        company: My Company
+        phone:
+            work: +33 3 45 67 89 10
+        url: http://my_website.com
+        
+    profiles:                                   # PROFILES
+        jdoe:
+            firstName: John
+            lastName: Doe
+            photo: bundles/app/img/vcards-people/jdoe.jpg
+```
 
 > Warning: all URIs must be formatted as above (`@AppBundle/Resources/public/file.ext` vs `bundles/app/file.ext` format,
 trailing and leading slashes)
