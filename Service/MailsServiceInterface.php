@@ -1,6 +1,6 @@
 <?php
 
-namespace AtlanteGroup\CorporateVCardsBundle\Service;
+namespace Chteuchteu\CorporateVCardsBundle\Service;
 
 interface MailsServiceInterface
 {

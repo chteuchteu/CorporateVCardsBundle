@@ -1,6 +1,6 @@
 <?php
 
-namespace AtlanteGroup\CorporateVCardsBundle\Twig;
+namespace Chteuchteu\CorporateVCardsBundle\Twig;
 
 class AppExtension extends \Twig_Extension
 {

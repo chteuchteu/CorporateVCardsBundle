@@ -1,9 +1,9 @@
 <?php
 
-namespace AtlanteGroup\CorporateVCardsBundle\Command;
+namespace Chteuchteu\CorporateVCardsBundle\Command;
 
-use AtlanteGroup\CorporateVCardsBundle\CorporateVCardsBundle;
-use AtlanteGroup\CorporateVCardsBundle\Helper\Util;
+use Chteuchteu\CorporateVCardsBundle\CorporateVCardsBundle;
+use Chteuchteu\CorporateVCardsBundle\Helper\Util;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -33,7 +33,7 @@ class GenerateVCardsFaviconsCommand extends ContainerAwareCommand
         $this->relFaviconGeneratorApiKey = $config['favicons']['real_favicon_generator_api_key'];
         if (!$this->relFaviconGeneratorApiKey) {
             $output->writeln('Missing RealFaviconGenerator API key, aborting.');
-            $output->writeln('Read documentation at https://github.com/AtlanteGroup/CorporateVCardsBundle to learn how to generate one.');
+            $output->writeln('Read documentation at https://github.com/chteuchteu/CorporateVCardsBundle to learn how to generate one.');
             return;
         }
 

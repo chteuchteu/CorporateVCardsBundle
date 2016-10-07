@@ -1,6 +1,6 @@
 <?php
 
-namespace AtlanteGroup\CorporateVCardsBundle;
+namespace Chteuchteu\CorporateVCardsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

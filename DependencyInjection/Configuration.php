@@ -1,6 +1,6 @@
 <?php
 
-namespace AtlanteGroup\CorporateVCardsBundle\DependencyInjection;
+namespace Chteuchteu\CorporateVCardsBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

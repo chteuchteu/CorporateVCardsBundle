@@ -1,11 +1,11 @@
 <?php
 
-namespace AtlanteGroup\CorporateVCardsBundle\Controller;
+namespace Chteuchteu\CorporateVCardsBundle\Controller;
 
-use AtlanteGroup\CorporateVCardsBundle\CorporateVCardsBundle;
-use AtlanteGroup\CorporateVCardsBundle\Helper\Util;
-use AtlanteGroup\CorporateVCardsBundle\Service\MailsServiceInterface;
-use AtlanteGroup\CorporateVCardsBundle\Service\VCardService;
+use Chteuchteu\CorporateVCardsBundle\CorporateVCardsBundle;
+use Chteuchteu\CorporateVCardsBundle\Helper\Util;
+use Chteuchteu\CorporateVCardsBundle\Service\MailsServiceInterface;
+use Chteuchteu\CorporateVCardsBundle\Service\VCardService;
 use Endroid\QrCode\QrCode;
 use JeroenDesloovere\VCard\VCard;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;

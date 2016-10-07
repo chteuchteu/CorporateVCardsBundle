@@ -1,11 +1,11 @@
 {
-    "name": "atlante-group/corporate-vcards-bundle",
+    "name": "chteuchteu/corporate-vcards-bundle",
     "description": "Easily create professional looking vcards",
     "license": "MIT",
     "authors": [
         {
             "name": "Quentin Stoeckel",
-            "email": "qstoeckel@atlante-group.com"
+            "email": "stoeckel.quentin@gmail.com"
         }
     ],
     "keywords": [
@@ -19,6 +19,6 @@
     },
     "require-dev" : { },
     "autoload": {
-        "psr-4": { "AtlanteGroup\\CorporateVCardsBundle\\": "" }
+        "psr-4": { "Chteuchteu\\CorporateVCardsBundle\\": "" }
     }
 }

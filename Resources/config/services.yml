@@ -1,6 +1,6 @@
 services:
     corporate_v_cards.vcard:
-        class: AtlanteGroup\CorporateVCardsBundle\Service\VCardService
+        class: Chteuchteu\CorporateVCardsBundle\Service\VCardService
         arguments:
             profiles: '%corporate_v_cards.profiles%'
             defaultProfile: '%corporate_v_cards.default%'
@@ -8,7 +8,7 @@ services:
             requestStack: "@request_stack"
 
     app.twig_extension:
-        class: AtlanteGroup\CorporateVCardsBundle\Twig\AppExtension
+        class: Chteuchteu\CorporateVCardsBundle\Twig\AppExtension
         public: false
         tags:
             - { name: twig.extension }

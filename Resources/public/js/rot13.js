@@ -1,7 +1,3 @@
-/**
- * Atlante Support, all rights reserved
- */
-
 $ = jQuery;
 $(document).ready(function() {
 	// De-obfuscate rot13-encoded mail addresses

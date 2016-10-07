@@ -1,6 +1,6 @@
 <?php
 
-namespace AtlanteGroup\CorporateVCardsBundle\DependencyInjection;
+namespace Chteuchteu\CorporateVCardsBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

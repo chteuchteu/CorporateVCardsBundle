@@ -1,8 +1,8 @@
 <?php
 
-namespace AtlanteGroup\CorporateVCardsBundle\Service;
+namespace Chteuchteu\CorporateVCardsBundle\Service;
 
-use AtlanteGroup\CorporateVCardsBundle\Helper\Util;
+use Chteuchteu\CorporateVCardsBundle\Helper\Util;
 use JeroenDesloovere\VCard\VCard;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;

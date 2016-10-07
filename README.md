@@ -22,12 +22,12 @@ To install this bundle inside your existent symfony2 project, follow these instr
         "repositories": [
             {
                 "type": "vcs",
-                "url": "https://github.com/AtlanteGroup/CorporateVCardsBundle"
+                "url": "https://github.com/chteuchteu/CorporateVCardsBundle"
             }
         ],
         "require": {
             # ...
-            "atlante-group/corporate-vcards-bundle": "dev-master"
+            "chteuchteu/corporate-vcards-bundle": "dev-master"
         }
 
 2. Register this bundle in symfony's kernel:
@@ -37,7 +37,7 @@ To install this bundle inside your existent symfony2 project, follow these instr
         {
             $bundles = array(
                 // ...
-                new AtlanteGroup\CorporateVCardsBundle\CorporateVCardsBundle(),
+                new Chteuchteu\CorporateVCardsBundle\CorporateVCardsBundle(),
             );
         }
 

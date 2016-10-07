@@ -1,6 +1,6 @@
 <?php
 
-namespace AtlanteGroup\CorporateVCardsBundle\Helper;
+namespace Chteuchteu\CorporateVCardsBundle\Helper;
 
 abstract class Util
 {
