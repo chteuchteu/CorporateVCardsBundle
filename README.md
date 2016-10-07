@@ -44,7 +44,9 @@ To install this bundle inside your existent symfony2 project, follow these instr
         prefix:   /vcard/
     ```
 
-4. Install assets:
+4. Configure the bundle (see Defining profiles)
+
+5. Install assets:
 
     ```bash
     php bin/console asset:install
@@ -88,7 +90,7 @@ corporate_v_cards:
         favicons:
             enabled: true
             real_favicon_generator_api_key: null
-            dir: @AppBundle/Resources/public/img/vcards-favicons/
+            dir: "@AppBundle/Resources/public/img/vcards-favicons/"
         backgrounds:
             - bundles/app/img/vcards-backgrounds/1.jpg
             - bundles/app/img/vcards-backgrounds/2.jpg
@@ -139,4 +141,4 @@ substitution cipher. Those are then decoded client-side using a simple javascrip
 nor secure, but to avoid displaying clear e-mail addresses in the vcards HTML source.
 
 ## Contribute
-All contributions are welcomed! Please create your pull-requests against the `devel` branch.
+All contributions are welcomed! Please create your pull-requests against the `master` branch.

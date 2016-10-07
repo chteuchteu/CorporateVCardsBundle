@@ -8,7 +8,6 @@ use Chteuchteu\CorporateVCardsBundle\Service\MailsServiceInterface;
 use Chteuchteu\CorporateVCardsBundle\Service\VCardService;
 use Endroid\QrCode\QrCode;
 use JeroenDesloovere\VCard\VCard;
-use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
